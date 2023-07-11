@@ -21,12 +21,15 @@ namespace ECS_PlayGround
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (cube , transform)
-                     in SystemAPI.Query<RefRW<CubeComponentData>, RefRW<LocalTransform>>())
-            {
-                cube.ValueRW.Index += 1;
-                transform.ValueRW = transform.ValueRW.Rotate(quaternion.RotateY(10 * SystemAPI.Time.DeltaTime));
-            }
+            // foreach (var (cube , transform)
+            //          in SystemAPI.Query<RefRW<CubeComponentData>, RefRW<LocalTransform>>())
+            // {
+            //     cube.ValueRW.Index += 1;
+            //     transform.ValueRW = transform.ValueRW.Rotate(quaternion.RotateY(10 * SystemAPI.Time.DeltaTime));
+            // }
+
+            var job = new CubeRotateJob() { Delta = SystemAPI.Time.DeltaTime };
+            job.ScheduleParallel();
         }
         
         [BurstCompile]
@@ -35,7 +38,9 @@ namespace ECS_PlayGround
             public float Delta;
             void Execute(CubeAspect cube)
             {
-                cube.Rotation = quaternion.RotateY(10 * Delta);
+                var q = cube.Rotation;
+                var i= math.mul(q, quaternion.RotateY(10 * Delta));
+                cube.Rotation = i;
             }
         }
 
