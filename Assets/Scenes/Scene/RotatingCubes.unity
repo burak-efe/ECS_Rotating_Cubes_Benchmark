@@ -168,3 +168,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CubePrefab: {fileID: 2540664259870484736, guid: 1289c97ec3e234d4c874b3fe766e0509, type: 3}
+  Count: 100000
