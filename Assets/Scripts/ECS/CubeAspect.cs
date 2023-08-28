@@ -15,7 +15,7 @@ namespace RotatingCubes
         // A RefRW field provides read write access to a component. If the aspect is taken as an "in"
         // parameter, the field behaves as if it was a RefRO and throws exceptions on write attempts.
         readonly RefRW<LocalTransform> Transform;
-        readonly RefRW<CubeComponentData> CannonBall;
+        readonly RefRW<CubeComponentData> Cube;
 
         // Properties like this aren't mandatory. The Transform field can be public instead.
         // But they improve readability by avoiding chains of "aspect.aspect.aspect.component.value.value".
