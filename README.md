@@ -31,4 +31,4 @@ Since c# calls from c++ side are costly, packing processing in update function w
 like I said in the beginning, this scenario not ALU bound and main bottleneck is accessing high amount of objects, so job system parallelization and burst optimizations doesn't give much;
 Also rendering system takes more time, because looks like its need to update itself after transform jobs.
 ### ECS <br>
-from unplayable on pc to VR ready :D since we use Dots transform component, the data we want to access is sequential in memory.
+from unplayable on pc to VR ready :D since we use Dots transform component, the data we want to access is sequential in memory. Also batching on ECS superior than regular gameobjects. It was 100k batch and 15 setpass call on other samples while on ECS number was 29 batch and 5 setpass call.
